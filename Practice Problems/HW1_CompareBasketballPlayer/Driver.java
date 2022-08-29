@@ -1,7 +1,7 @@
 // Mahmoud Elbasiouny
 
 package HW1_CompareBasketballPlayer;
-import java.util.*;
+import java.util.Collections;
 
 public class Driver {
     public static void main(String[] args) {
