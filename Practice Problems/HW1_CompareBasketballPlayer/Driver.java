@@ -1,6 +1,9 @@
+// Mahmoud Elbasiouny
+
+package HW1_CompareBasketballPlayer;
 import java.util.*;
 
-public class HW1_CompareBasketballPlayers {
+public class Driver {
     public static void main(String[] args) {
         // Create three BasketballPlayer objects
         BasketballPlayer player1 = new BasketballPlayer("Mahmoud", "Elbasiouny", 18.3);
@@ -23,45 +26,6 @@ public class HW1_CompareBasketballPlayers {
         // Print out the ArrayList a second time
         System.out.println("Sorted player list: ");
         System.out.println(playerList);
-    }
-}
-
-
-class BasketballPlayer implements Comparable<BasketballPlayer> {
-    private String firstName;
-    private String lastName;
-    private double ppg;
-
-    public BasketballPlayer(String firstName, String lastName, double ppg) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ppg = ppg;
-    }
-
-    public String toString() {
-        return lastName + ", " + firstName + " (" + ppg + ")";
-    }
-
-    public int compareTo(BasketballPlayer other) {
-        if (this.ppg > other.ppg) {
-            return -1;
-        } else if (this.ppg < other.ppg) {
-            return 1;
-        } else {
-            if (this.lastName.compareToIgnoreCase(other.lastName) < 0) {
-                return -1;
-            } else if (this.lastName.compareToIgnoreCase(other.lastName) > 0) {
-                return 1;
-            } else {
-                if (this.firstName.compareToIgnoreCase(other.firstName) < 0) {
-                    return -1;
-                } else if (this.firstName.compareToIgnoreCase(other.firstName) > 0) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        }
     }
 }
 
