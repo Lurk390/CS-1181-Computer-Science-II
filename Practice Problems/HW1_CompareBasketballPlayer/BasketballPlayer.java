@@ -1,7 +1,6 @@
 // Mahmoud Elbasiouny
 
 package HW1_CompareBasketballPlayer;
-import java.util.Collections;
 
 class BasketballPlayer implements Comparable<BasketballPlayer> {
     private String firstName;
