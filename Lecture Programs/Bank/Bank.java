@@ -1,5 +1,7 @@
 package Bank;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Bank {
     private static Scanner input = new Scanner(System.in);
@@ -10,9 +12,9 @@ public class Bank {
             int choice = getMenuOption();
 
             switch (choice) {
-                case 1: newCustomer();
+                case 1: accountList.add(newCustomer());
                         break;
-                // case 2: getBalance;
+                // case 2: getBalance();
                 //         break;
                 // case 3: deposit();
                 //         break;
@@ -30,9 +32,9 @@ public class Bank {
     }
 
 
-    public static void displayAccounts(ArrayList<BankAccount> accounts) {
-        Collections.sort(accounts);
-        for (BankAccount a: accounts) {
+    public static void displayAccounts(ArrayList<BankAccount> accountList) {
+        Collections.sort(accountList);
+        for (BankAccount a: accountList) {
             System.out.println(a);
         }
     }
