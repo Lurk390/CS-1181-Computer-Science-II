@@ -17,20 +17,20 @@ class BasketballPlayer implements Comparable<BasketballPlayer> {
         return lastName + ", " + firstName + " (" + ppg + ")";
     }
 
-    public int compareTo(BasketballPlayer other) {
-        if (this.ppg > other.ppg) {
+    public int compareTo(BasketballPlayer o) {
+        if (this.ppg > o.ppg) {
             return -1;
-        } else if (this.ppg < other.ppg) {
+        } else if (this.ppg < o.ppg) {
             return 1;
         } else {
-            if (this.lastName.compareToIgnoreCase(other.lastName) < 0) {
+            if (this.lastName.compareToIgnoreCase(o.lastName) < 0) {
                 return -1;
-            } else if (this.lastName.compareToIgnoreCase(other.lastName) > 0) {
+            } else if (this.lastName.compareToIgnoreCase(o.lastName) > 0) {
                 return 1;
             } else {
-                if (this.firstName.compareToIgnoreCase(other.firstName) < 0) {
+                if (this.firstName.compareToIgnoreCase(o.firstName) < 0) {
                     return -1;
-                } else if (this.firstName.compareToIgnoreCase(other.firstName) > 0) {
+                } else if (this.firstName.compareToIgnoreCase(o.firstName) > 0) {
                     return 1;
                 } else {
                     return 0;
