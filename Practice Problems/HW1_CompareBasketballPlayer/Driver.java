@@ -7,9 +7,9 @@ import java.util.Collections;
 public class Driver {
     public static void main(String[] args) {
         // Create three BasketballPlayer objects
-        BasketballPlayer player1 = new BasketballPlayer("Mahmoud", "Elbasiouny", 18.3);
-        BasketballPlayer player2 = new BasketballPlayer("Alex", "House", 12.6);
-        BasketballPlayer player3 = new BasketballPlayer("Trace", "Jones", 15.7);
+        BasketballPlayer player1 = new BasketballPlayer("Taylor", "DeShaun", 18.1);
+        BasketballPlayer player2 = new BasketballPlayer("Smith", "DeShaun", 12.7);
+        BasketballPlayer player3 = new BasketballPlayer("Smith", "Jay", 12.7);
 
         // Put the player objects into an ArrayList
         ArrayList<BasketballPlayer> playerList = new ArrayList<BasketballPlayer>();
