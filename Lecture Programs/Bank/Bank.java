@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Bank {
+class Bank {
     private static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         ArrayList<BankAccount> accountList = new ArrayList<>();
@@ -22,9 +22,11 @@ public class Bank {
                 //         break;
                 // case 5: applyInterest();
                 //         break;
-                case 6: displayAccounts(accountList);
+                case 6: displayAccountsByNumber(accountList);
                         break;
-                case 7: return; // Quit
+                case 7: displayAccountsByBalance(accountList);
+                        break;
+                case 8: return; // Quit
             }
         }
 
@@ -32,8 +34,16 @@ public class Bank {
     }
 
 
-    public static void displayAccounts(ArrayList<BankAccount> accountList) {
+    public static void displayAccountsByNumber(ArrayList<BankAccount> accountList) {
         Collections.sort(accountList);
+        for (BankAccount a: accountList) {
+            System.out.println(a);
+        }
+    }
+
+
+    public static void displayAccountsByBalance(ArrayList<BankAccount> accountList) {
+        Collections.sort(accountList, new AccountComparator());
         for (BankAccount a: accountList) {
             System.out.println(a);
         }
@@ -61,8 +71,9 @@ public class Bank {
         System.out.println("3. Deposit");
         System.out.println("4. Withdraw");
         System.out.println("5. Apply Interest");
-        System.out.println("6. List Accounts");
-        System.out.println("7. Quit");
+        System.out.println("6. List Accounts by Account Number");
+        System.out.println("7. List Accounts by Balance");
+        System.out.println("8. Quit");
         System.out.print("What do you want to do? ");
         return input.nextInt();
     }

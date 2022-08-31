@@ -1,6 +1,6 @@
 package Bank;
 
-class BankAccount implements Comparable<BankAccount>{
+class BankAccount implements Comparable<BankAccount> {
     private String firstName;
     private String lastName;
     private final String accountNumber;
@@ -36,7 +36,13 @@ class BankAccount implements Comparable<BankAccount>{
     }
 
     public int compareTo(BankAccount o) {
-        return this.accountNumber.compareTo(o.accountNumber);
+        if (this.balance > o.balance) {
+            return -1;
+        } else if (this.balance < o.balance) {
+            return 1;
+        } else {
+            return this.accountNumber.compareTo(o.accountNumber);
+        }
     }
 
     // Setters and getters
