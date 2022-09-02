@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-class Bank {
+public class Driver {
     private static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         ArrayList<BankAccount> accountList = new ArrayList<>();
@@ -36,7 +36,7 @@ class Bank {
 
     public static void displayAccountsByNumber(ArrayList<BankAccount> accountList) {
         Collections.sort(accountList);
-        for (BankAccount a: accountList) {
+        for (BankAccount a : accountList) {
             System.out.println(a);
         }
     }
