@@ -32,4 +32,9 @@ class SavingsAccount extends BankAccount {
     public double getNumWithdraws() {
         return numWithdraws;
     }
+
+    @Override
+    public String getAccountType() {
+        return "Savings";
+    }
 }

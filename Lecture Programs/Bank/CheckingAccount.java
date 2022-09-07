@@ -10,4 +10,21 @@ class CheckingAccount extends BankAccount {
               interestRate);
         this.overdraftFee = overdraftFee;
     }
+
+    public boolean withdraw(double amount) {
+        boolean success = super.withdraw(amount);
+        if (!success) {
+            super.setBalance(super.getBalance() - amount - overdraftFee); 
+        }
+        return true;
+    }
+
+    public String toString() {
+            return "Checking: " + super.toString();
+    }
+
+    @Override
+    public String getAccountType() {
+        return "Checking";
+    }
 }

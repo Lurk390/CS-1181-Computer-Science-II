@@ -54,13 +54,16 @@ public class Driver {
         System.out.print("Name: ");
         String firstName = input.next();
         String lastName = input.next();
+
         System.out.print("Account Number: ");
         String accountNumber = input.next();
+
         System.out.print("Balance: ");
         double balance = input.nextDouble();
+
         double interestRate = 0.0012;
-        BankAccount c = new BankAccount (firstName, lastName, accountNumber, 
-                                         balance, interestRate);
+        BankAccount c = new CheckingAccount (firstName, lastName, accountNumber, 
+                                         balance, interestRate, 30.00);
         return c;
     }
 

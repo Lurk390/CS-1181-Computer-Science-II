@@ -1,6 +1,6 @@
 package Bank;
 
-class BankAccount implements Comparable<BankAccount> {
+abstract class BankAccount implements Comparable<BankAccount> {
     private String firstName;
     private String lastName;
     private final String accountNumber;
@@ -30,6 +30,13 @@ class BankAccount implements Comparable<BankAccount> {
             return true;
         }
     }
+
+    public void applyInterest() {
+        balance += (1 + interestRate);
+        balance = Math.floor(balance * 100) / 100;
+    }
+
+    public abstract String getAccountType();
 
     public String toString() {
         return accountNumber + ": ($" + balance + ")";
