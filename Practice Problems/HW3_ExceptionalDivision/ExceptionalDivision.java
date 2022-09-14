@@ -1,6 +1,5 @@
 // Mahmoud Elbasiouny
 
-package HW3_ExceptionalDivision;
 import java.util.Scanner;
 
 public class ExceptionalDivision {
