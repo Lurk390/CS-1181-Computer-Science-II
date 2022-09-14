@@ -3,6 +3,7 @@ package Polymorphism;
 public class StudentDriver {
     public static void main(String[] args) {
         Student s1 = new Student("John Doe", 3.8);
+        // Student s2 = s1; // this is bad and wrong
         Student s2 = new Student(s1);
 
         System.out.println("s1 = " + s1);
