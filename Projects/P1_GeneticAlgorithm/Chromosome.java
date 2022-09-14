@@ -17,7 +17,7 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
         for (Item item : items) {
             Item newItem = new Item(item);
             newItem.setIncluded(rng.nextBoolean());
-            this.add(newItem);
+            this.add(new Item(newItem));
         }
     }
 
@@ -66,8 +66,8 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
         }
     }
 
-    // Returns -1 if this chromosome’s =itness is greater than the other’s =itness, +1 if 
-    // this chromosome’s =itness is less than the other one’s, and 0 if their fitness is the same. 
+    // Returns -1 if this chromosome’s fitness is greater than the other’s fitness, +1 if 
+    // this chromosome’s fitness is less than the other one’s, and 0 if their fitness is the same. 
     public int compareTo(Chromosome other) {
         if (this.getFitness() > other.getFitness()) {
             return -1;
@@ -79,7 +79,7 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
     }
 
     // Displays the name, weight and value of all items in this chromosome whose included 
-    // value is true, followed by the =itness of this chromosome. 
+    // value is true, followed by the fitness of this chromosome. 
     public String toString() {
         String result = "";
         for (Item item : this) {
@@ -87,6 +87,7 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
                 result += item.toString() + " ";
                 }        
         }
-        return result;
+        String fitness = String.valueOf(getFitness());
+        return result + "\n" + fitness;
     }
 }
