@@ -1,5 +1,7 @@
 // Mahmoud Elbasiouny
 
+package HW3_ExceptionalDivision;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ExceptionalDivision {
@@ -23,21 +25,18 @@ public class ExceptionalDivision {
             try {
                 System.out.print("What is the denominator? ");
                 denominator = input.nextInt();
-                
-                if (denominator == 0) {
-                    System.out.println("Error. Can not divide by zero.");
-                    input.nextLine();
-                } else {
-                    break;
-                }
-            } catch (Exception InputMismatchException) {
+
+                int quotient = numerator / denominator;
+                System.out.println(numerator + " / " + denominator + " = " + quotient);
+                break;
+            } catch (InputMismatchException e1) {
                 System.out.println("Error: Please enter a whole number.");
+                input.nextLine();
+            } catch (ArithmeticException e2) {
+                System.out.println("Error. Can not divide by zero.");
                 input.nextLine();
             }
         }
         input.close();
-
-        int quotient = numerator / denominator;
-        System.out.println(numerator + " / " + denominator + " = " + quotient);
     }
 }
