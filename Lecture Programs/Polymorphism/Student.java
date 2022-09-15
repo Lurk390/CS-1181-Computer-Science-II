@@ -1,8 +1,6 @@
 package Polymorphism;
-import java.io.Serializable;
 
-public class Student extends Person implements BreathingThing,
-Serializable {
+public class Student extends Person implements BreathingThing {
     private transient double gpa;
 
     Student(String name, double gpa) {
