@@ -37,7 +37,7 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
     }
 
     // Performs the mutation operation on this chromosome (i.e. for each item in this 
-    // chromosome, use a random number to decide whether or not to =lip it’s included field from 
+    // chromosome, use a random number to decide whether or not to flip it’s included field from 
     // true to false or vice versa).
     public void mutate() {
         for (Item item : this) {
@@ -47,8 +47,8 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
         }
     }
 
-    // Returns the =itness of this chromosome. If the sum of all of the included items’ weights 
-    // are greater than 10, the fitness is zero. Otherwise, the =itness is equal to the sum of all of the 
+    // Returns the fitness of this chromosome. If the sum of all of the included items’ weights 
+    // are greater than 10, the fitness is zero. Otherwise, the fitness is equal to the sum of all of the 
     // included items’ values. 
     public int getFitness() {
         double totalWeight = 0;
@@ -87,7 +87,6 @@ public class Chromosome extends ArrayList<Item> implements Comparable<Chromosome
                 result += item.toString() + " ";
                 }        
         }
-        String fitness = String.valueOf(getFitness());
-        return result + "\n" + fitness;
+        return result + "\n" + String.valueOf(getFitness());
     }
 }
