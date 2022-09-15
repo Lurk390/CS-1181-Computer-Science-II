@@ -11,7 +11,7 @@ public class GeneticAlgorithm {
     public static void main(String[] args) throws FileNotFoundException {
         String filename = "Projects/P1_GeneticAlgorithm/items.txt"; // alternative more_items.txt
         int popSize = 10;   // 100 for more_items.txt
-        int gens = 20;  // 5000 for moe_items.txt 
+        int gens = 20;  // 5000 for more_items.txt 
 
         Random rng = new Random();
         ArrayList<Item> items = new ArrayList<>();
