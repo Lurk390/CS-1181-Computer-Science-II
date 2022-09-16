@@ -14,8 +14,10 @@ public class Exceptions {
         }
         System.out.println(s.length());
         */
+        /*
         String filename = "Lecture Programs/Exceptions/name.txt";
-
+        Scanner keyboard = new Scanner(System.in);
+        
         try {
             Scanner in = new Scanner(new File(filename));
             System.out.println("Hello " + in.nextLine());
@@ -24,9 +26,7 @@ public class Exceptions {
             int z = x / y;
         } catch (FileNotFoundException e1) {
             System.out.print("Greetings! What is your name? ");
-            Scanner keyboard = new Scanner(System.in);
             String name = keyboard.nextLine();
-            keyboard.close();
 
             try {
                 PrintWriter pw = new PrintWriter(filename);
@@ -37,6 +37,33 @@ public class Exceptions {
             }  
         } catch (ArithmeticException e3) {
             System.out.println("Error: Can not divide by zero.");
+        } catch (Exception e4) {
+            System.out.println("Error: General");
+        } finally {
+            // this block always executes (whether or not an exception happened)
+            // we normally use it to free up any system resources
+            keyboard.close();
+        }
+        */
+
+        int input = 0;
+        try {
+            input = getInput();
+        } catch (DumbUserException e) {
+            System.out.println("Error: Value set to 5");
+            input = 5;
         }
     }
+
+        public static int getInput() throws DumbUserException {
+            Scanner in = new Scanner(System.in);
+            System.out.print("Enter a number between 1 and 10: ");
+            int x = in.nextInt();
+
+            if (x < 1 || x > 10) {
+                throw new DumbUserException("Wanted 1 to 10; got " + x);
+            }
+            return x;
+        }
+    
 }
