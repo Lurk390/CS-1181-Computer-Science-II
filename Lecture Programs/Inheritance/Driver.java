@@ -4,9 +4,6 @@ class Driver {
 
     public static void main(String[] args) {
 
-        ClassB b = new ClassB();
-
-        /*
         ClassA x1 = new ClassA();
         ClassA x2 = new ClassB();
         ClassB x3 = new ClassB();
@@ -25,8 +22,7 @@ class Driver {
         //x2.methodC();
         x3.methodC();
 
-        String s = x1.toString();
-        */
+        //String s = x1.toString();
         
     }
 }

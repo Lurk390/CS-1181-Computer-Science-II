@@ -1,7 +1,7 @@
 package Exceptions;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+// import java.io.File;
+// import java.io.FileNotFoundException;
+// import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Exceptions {
@@ -49,16 +49,19 @@ public class Exceptions {
         int input = 0;
         try {
             input = getInput();
+            System.out.println("You entered: " + input);
         } catch (DumbUserException e) {
             System.out.println("Error: Value set to 5");
             input = 5;
         }
     }
 
+
         public static int getInput() throws DumbUserException {
             Scanner in = new Scanner(System.in);
             System.out.print("Enter a number between 1 and 10: ");
             int x = in.nextInt();
+            in.close();
 
             if (x < 1 || x > 10) {
                 throw new DumbUserException("Wanted 1 to 10; got " + x);
