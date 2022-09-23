@@ -13,6 +13,14 @@ class HelloWorldGUI extends JFrame {
 
         JTextField nameTF = new JTextField("<Enter your name>");
         JButton goButton = new JButton("Say Hi!");
+//      goButton.addActionListener(new ButtonListener())
+/*
+        goButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("I was clicked!");
+            }
+        });
+*/
         goButton.addActionListener(e -> {
             message.setText("Hello, " + nameTF.getText() + "!");
         });
