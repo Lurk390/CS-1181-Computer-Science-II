@@ -2,10 +2,6 @@ package GUI;
 import javax.swing.*;
 
 class HelloWorldGUI extends JFrame {
-    public static void main(String[] args) {
-        new HelloWorldGUI();
-    }
-
     
     public HelloWorldGUI() {
         JPanel root = new JPanel();
@@ -37,5 +33,10 @@ class HelloWorldGUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setVisible(true);
+    }
+
+
+    public static void main(String[] args) {
+        new HelloWorldGUI();
     }
 }
