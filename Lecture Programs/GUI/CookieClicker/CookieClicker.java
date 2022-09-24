@@ -4,14 +4,12 @@ import java.awt.*;
 import javax.swing.*;
 
 class CookieClicker extends JFrame {
-
     // Must be a class variable in order to work inside lamba expression
     private int score = 0;
 
     public static void main(String[] args) {
         new CookieClicker();
     }
-
     
     public CookieClicker() {
         JPanel root = new JPanel();
