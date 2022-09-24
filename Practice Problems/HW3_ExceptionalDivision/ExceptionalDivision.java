@@ -1,8 +1,7 @@
 // Mahmoud Elbasiouny
-
 package HW3_ExceptionalDivision;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class ExceptionalDivision {
     public static void main(String[] args) {
