@@ -1,7 +1,6 @@
 package Exceptions;
-// import java.io.File;
-// import java.io.FileNotFoundException;
-// import java.io.PrintWriter;
+
+// import java.io.*;
 import java.util.Scanner;
 
 public class Exceptions {

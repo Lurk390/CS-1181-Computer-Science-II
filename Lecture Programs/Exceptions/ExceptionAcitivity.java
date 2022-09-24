@@ -1,7 +1,6 @@
 package Exceptions;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class ExceptionAcitivity {
     private static Scanner in = new Scanner(System.in);
