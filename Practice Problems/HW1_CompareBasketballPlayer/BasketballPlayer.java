@@ -1,5 +1,4 @@
 // Mahmoud Elbasiouny
-
 package HW1_CompareBasketballPlayer;
 
 class BasketballPlayer implements Comparable<BasketballPlayer> {

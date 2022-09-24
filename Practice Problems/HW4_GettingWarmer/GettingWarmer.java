@@ -1,5 +1,4 @@
 // Mahmoud Elbasiouny
-
 package HW4_GettingWarmer;
 
 import javax.swing.*;

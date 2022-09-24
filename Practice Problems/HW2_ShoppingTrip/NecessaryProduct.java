@@ -1,5 +1,4 @@
 // Mahmoud Elbasiouny
-
 package HW2_ShoppingTrip;
 
 public class NecessaryProduct extends Product {
