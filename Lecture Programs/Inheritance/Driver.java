@@ -23,6 +23,5 @@ class Driver {
         x3.methodC();
 
         //String s = x1.toString();
-        
     }
 }

@@ -1,4 +1,5 @@
 package Bank;
+
 import java.util.Comparator;
 
 class AccountComparator implements Comparator<BankAccount> {

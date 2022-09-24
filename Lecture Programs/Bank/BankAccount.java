@@ -86,5 +86,4 @@ abstract class BankAccount implements Comparable<BankAccount> {
     public double getInterestRate() {
         return interestRate;
     }
-
 }
