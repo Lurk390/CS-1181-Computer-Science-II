@@ -1,4 +1,5 @@
 package GUI;
+
 import javax.swing.*;
 
 class HelloWorldGUI extends JFrame {
