@@ -17,7 +17,7 @@ public class GraphicsPanel extends JPanel implements KeyListener {
         this.addKeyListener(this);
 
         // Ball bounces back and forth
-        /*Timer t = new Timer(17, e -> {
+        Timer t = new Timer(17, e -> {
             xCoord += change;
             if (xCoord >= 450 || xCoord <= 0) {
                 change = -change;
@@ -25,7 +25,7 @@ public class GraphicsPanel extends JPanel implements KeyListener {
             this.repaint();
         });
         t.setRepeats(true);
-        t.start(); */
+        t.start();
     }
 
     public void paintComponent(Graphics g) {
