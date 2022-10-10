@@ -1,13 +1,13 @@
 package Generics;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 class Generics {
 
     public static void main(String[] args) {
 
         // One big advantage of generics is that we get compile-time type checking
-
+        /*
         ArrayList list1 = new ArrayList();
         list1.add("Hello");
         list1.add("my");
@@ -25,7 +25,7 @@ class Generics {
             }
         }
         System.out.println("The longest string is " + longest);
-
+        */
         /*
         ArrayList<String> list1 = new ArrayList<>();
         //list1.add("Hello");

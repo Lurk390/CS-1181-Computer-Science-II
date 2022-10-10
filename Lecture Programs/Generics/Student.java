@@ -3,11 +3,11 @@ package Generics;
 import java.util.ArrayList;
 
 public class Student<E> {
-    private String name;
+    //private String name;
     private ArrayList<E> grades;
 
     public Student(String name) {
-        this.name = name;
+        //this.name = name;
         grades = new ArrayList<>();
     }
 
