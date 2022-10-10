@@ -1,7 +1,6 @@
 package GUI.Graphics;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GraphicsExample extends JFrame {
 
