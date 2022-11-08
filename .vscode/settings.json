@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Projects/P4_PasswordCracker/zip4j-1.3.2.jar"
+    ]
+}
