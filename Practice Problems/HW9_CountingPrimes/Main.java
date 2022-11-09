@@ -1,65 +1,85 @@
 // Mahmoud Elbasiouny
 package HW9_CountingPrimes;
 
-// import java.util.*;
+import java.util.*;
 
 public class Main {
+    static long executionTime = 0;
 
     public static void main(String[] args) {
         // take two input parameters: number of threads and value n
-        // Scanner input = new Scanner(System.in);
-        // System.out.print("Enter the number of threads: ");
-        // int numThreads = input.nextInt();
-        // System.out.print("Enter the value of n: ");
-        // int n = input.nextInt();
-        // input.close();
+        Scanner input = new Scanner(System.in);
 
-        // System.out.println(countPrimes(numThreads, n));
+        System.out.print("Enter the number of threads: ");
+        int numThreads = input.nextInt();
+        System.out.print("Enter the value of n: ");
+        int n = input.nextInt();
+        input.close();
 
-        long time1 = System.currentTimeMillis();
-        countPrimes(10000000, 1);
-        System.out.println("Time for 1 thread: " + (System.currentTimeMillis() - time1) + " ms");
+        System.out.println();
+        countPrimes(n, 1);
+        System.out.println();
+        double singleThreadExecutionTime = executionTime;
 
-        long time2 = System.currentTimeMillis();
-        countPrimes(10000000, 2);
-        System.out.println("Time for 2 threads: " + (System.currentTimeMillis() - time2) + " ms");
+        System.out.println("There are " + countPrimes(n, numThreads) + " primes in between 1 and " + n);
+        double multiThreadExecutionTime = executionTime;
 
-        long time3 = System.currentTimeMillis();
-        countPrimes(10000000, 3);
-        System.out.println("Time for 3 threads: " + (System.currentTimeMillis() - time3) + " ms");
-
-        long time4 = System.currentTimeMillis();
-        countPrimes(10000000, 4);
-        System.out.println("Time for 4 threads: " + (System.currentTimeMillis() - time4) + " ms");
+        double speedup = singleThreadExecutionTime / multiThreadExecutionTime;
+        System.out.printf("\nSpeed up: %.2f", speedup);
     }
 
     // create a method that creates n number of threads and counts the number of primes between 1 and n
     public static int countPrimes(int n, int numThreads) {
-        // create threads and count number of primes between 1 and n
-        int primes = 0;
+        long[] startTime = new long[numThreads];
+        long[] endTime = new long[numThreads];
+
+        int totalNumPrimes = 0;
         int start = 1;
         int end = n / numThreads;
+
         // create an array of threads
-        PrimeThread[] threads = new PrimeThread[numThreads];
+        ArrayList<PrimeThread> threads = new ArrayList<>();
+
+        long overallStartTime = System.currentTimeMillis();
+
         // create threads and start them
-        for (int i = 0; i < numThreads; i++) {
-            threads[i] = new PrimeThread(start, end);
-            threads[i].start();
-            start = end + 1;
+        for (int i = 0; i < numThreads - 1; i++) {
+            startTime[i] = System.currentTimeMillis();
+            threads.add(new PrimeThread(start, end));
+            threads.get(i).start();
+            start = end;
             end += n / numThreads;
         }
+
+        startTime[numThreads - 1] = System.currentTimeMillis();
+        threads.add(new PrimeThread(start, n));
+        threads.get(numThreads - 1).start();
+
         // wait for threads to finish
-        for (int i = 0; i < numThreads; i++) {
+        for (PrimeThread thread : threads) {
             try {
-                threads[i].join();
+                thread.join();
+                endTime[threads.indexOf(thread)] = System.currentTimeMillis();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        long overallEndTime = System.currentTimeMillis();
+
         // count the number of primes
         for (int i = 0; i < numThreads; i++) {
-            primes += threads[i].getPrimes(start, end);
+            int threadNumPrimes = threads.get(i).getPrimes();
+            long threadTime = endTime[i] - startTime[i];
+
+            totalNumPrimes += threadNumPrimes;
+            System.out.println("Thread " + (i + 1) + " took " + threadTime + " ms and found " + threadNumPrimes + " primes");
         }
-        return primes;
+
+        executionTime = overallEndTime - overallStartTime;
+        System.out.println("Total execution time: " + executionTime + " ms");
+
+        return totalNumPrimes;
     }
 }

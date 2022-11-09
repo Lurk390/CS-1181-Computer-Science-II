@@ -26,20 +26,19 @@ public class PrimeThread extends Thread {
         return true; 
     }
 
-    public int getPrimes(int start, int end) {
-        for (int i = start; i <= end; i++) {
+    public void countPrimes(int start, int end) {
+        for (int i = start; i < end; i++) {
             if (isPrime(i)) {
                 primes++;
             }
         }
+    }
+
+    public int getPrimes() {
         return primes;
     }
 
     public void run() {
-        for (int i = start; i <= end; i++) {
-            if (isPrime(i)) {
-                primes++;
-            }
-        }
+        countPrimes(start, end);
     }
 }
