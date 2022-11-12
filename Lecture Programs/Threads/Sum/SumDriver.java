@@ -1,4 +1,4 @@
-package Threads;
+package Threads.Sum;
 
 import java.util.ArrayList;
 
