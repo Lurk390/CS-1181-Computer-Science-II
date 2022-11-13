@@ -9,17 +9,18 @@ import net.lingala.zip4j.core.*;
 import net.lingala.zip4j.exception.*;
 import net.lingala.zip4j.model.FileHeader;
 
-/* File // numThreads // Execution Time
-   ------------------------------------
-   protected3.zip // 1 // 4.078s
-   protected3.zip // 3 // 1.716s
-   protected3.zip // 4 // 1.511s
-   protected3.zip // 8 // 1.358s
-   ------------------------------------
-   protected5.zip // 3 // 1087.14s
-   protected5.zip // 4 // 924.083s
-   protected5.zip // 8 // 688.318s
-   ------------------------------------
+/* File // numThreads // Execution Time (Windows) // Execution Time (Linux)
+   
+   Windows 11 PC:						Ubuntu 22.04.1 Server:
+   ------------------------------------------------------------------------
+   protected3.zip // 1 // 4.078s		// 0.923s
+   protected3.zip // 3 // 1.716s		// 0.419s
+   protected3.zip // 4 // 1.511s		// 0.341s
+   protected3.zip // 8 // 1.358s		// 0.317s
+   ------------------------------------------------------------------------
+   protected5.zip // 3 // 1087.14s		// 177.044s
+   protected5.zip // 4 // 924.083s		// 133.741s
+   protected5.zip // 8 // 688.318s		// 87.364s
 */
 
 public class Main {
@@ -28,13 +29,13 @@ public class Main {
 	private static String correctPassword;
 
     public static void main(String[] args) throws Exception {
-		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected3.zip";
-		// int passwordLength = 3;
-		String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
-		int passwordLength = 5;
-		int numThreads = 4;
+		String filePath = "Projects/P4_PasswordCracker/zipfiles/protected3.zip";
+		int passwordLength = 3;
+		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
+		// int passwordLength = 5;
+		int numThreads = 8;
 		String file = filePath.substring(37);
-		
+
 		try {
 			// Create numThreads threads to test passwords
 			PasswordTester[] testers = new PasswordTester[numThreads];
