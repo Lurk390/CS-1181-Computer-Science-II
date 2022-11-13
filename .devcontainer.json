@@ -3,6 +3,10 @@
 	"build": {
 		"dockerfile": "/home/mahmoud/code/dev/docker/java/Dockerfile"
 	},
+	"features": {
+        "git": "os-provided",
+        "sshd": "latest"
+    },
 	"extensions": [
 		"vscjava.vscode-java-pack",
 		"github.copilot",
