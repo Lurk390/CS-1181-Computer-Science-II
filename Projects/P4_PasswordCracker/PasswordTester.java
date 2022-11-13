@@ -4,11 +4,9 @@ import net.lingala.zip4j.core.*;
 
 public class PasswordTester extends Thread {
     private ZipFile zip;
-    private int id;
 
-    PasswordTester(int id, ZipFile zip) {
+    PasswordTester(ZipFile zip) {
         this.zip = zip;
-        this.id = id;
     }
 
     public void run() {

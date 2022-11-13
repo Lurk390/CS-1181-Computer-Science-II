@@ -1,9 +1,7 @@
 // Mahmoud Elbasiouny
 package P4_PasswordCracker;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.nio.file.*;
@@ -17,14 +15,14 @@ public class Main {
 	private static String correctPassword;
 
     public static void main(String[] args) throws Exception {
-		// String filePath = "Projects/P4_PasswordCracker/zipfiles/test3.zip";
-		// int passwordLength = 3;
+		String filePath = "Projects/P4_PasswordCracker/zipfiles/test3.zip";
+		int passwordLength = 3;
 		// String filePath = "Projects/P4_PasswordCracker/zipfiles/example.zip";
 		// int passwordLength = 4;
 		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected3.zip";
 		// int passwordLength = 3;
-		String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
-		int passwordLength = 5;
+		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
+		// int passwordLength = 5;
 		int numThreads = 8;
 		String file = filePath.substring(37);
 		
@@ -43,7 +41,7 @@ public class Main {
 				
 				ZipFile zip = new ZipFile("Projects/P4_PasswordCracker/temp/" + tempFileNames[i]);
 
-				testers[i] = new PasswordTester(i + 1, zip);
+				testers[i] = new PasswordTester(zip);
 			}
 
 			System.out.println("Attempting to crack " + file + " with " + numThreads + " thread(s)...");
@@ -82,37 +80,46 @@ public class Main {
 		}
     }
 
-	public static boolean verifyPassword(ZipeFile zipFile, String password) {
+	public static boolean verifyPassword(ZipFile zipFile, String password) {
 		try {
+
             if (zipFile.isEncrypted()) {
                 zipFile.setPassword(password);
             }
+
             List<FileHeader> fileHeaders = zipFile.getFileHeaders();
 
-            for(FileHeader fileHeader : fileHeaders) {
+			// Try reading the headers of the zip file
+            for (FileHeader fileHeader : fileHeaders) {
                 try {
-                    InputStream is = zipFile.getInputStream(fileHeader);
-                    byte[] b = new byte[4 * 4096];
-                    while (is.read(b) != -1) {
-                        //Do nothing as we just want to verify password
+                    InputStream inputStream = zipFile.getInputStream(fileHeader);
+                    byte[] bytes = new byte[4 * 4096];
+                    while (inputStream.read(bytes) != -1) {
+                        // Do nothing as we just want to verify password
                     }
-                    is.close();
+                    inputStream.close();
+					return true;
                 } catch (ZipException e) {
                     if (e.getCode() == ZipExceptionConstants.WRONG_PASSWORD) {
                         System.out.println("Wrong password");
+						return false;
                     } else {
                         //Corrupt file
                         e.printStackTrace();
+						return false;
                     }
                 } catch (IOException e) {
                      System.out.println("Most probably wrong password.");
                      e.printStackTrace();
+					 return false;
                 }
             }
         } catch (Exception e) {
             System.out.println("Some other exception occurred");
             e.printStackTrace();
+			return false;
         }
+		return false;
 	}
 
 	public static boolean extractZip(ZipFile zip, String password) {
