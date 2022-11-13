@@ -14,6 +14,15 @@ public class Driver {
         w1.start();
         w2.start();
         w3.start();
+
+        try {
+            tm.join();
+            w1.join();
+            w2.join();
+            w3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         
         System.out.println("Finished?");
     }
