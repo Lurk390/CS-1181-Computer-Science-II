@@ -21,7 +21,7 @@ public class PasswordTester extends Thread {
 
             //System.out.println("Tester " + id + " trying " + password + " on " + zip.getFile().getName());
 
-            if (Main.extractZip(zip, password)) {
+            if (Main.verifyPassword(zip, password)) {
                 Main.setPasswordFound(true);
                 Main.setCorrectPassword(password);
             }
