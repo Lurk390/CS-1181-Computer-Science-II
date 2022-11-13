@@ -9,16 +9,18 @@ public class PasswordTester extends Thread {
         this.zip = zip;
     }
 
+    // 
     public void run() {
+        // Keep testing passwords until one is found or the queue is empty
         while (PasswordQueue.size() > 0 || !Main.getPasswordFound()) {
-            // Get the next password from the queue
+            // Each thread will test a different password since poll() is used
             String password = PasswordQueue.poll();
             if (password == null) {
                 continue;
             }
 
-            //System.out.println("Tester " + id + " trying " + password + " on " + zip.getFile().getName());
-
+            // If the password is correct, set correctPassword varibale in Main
+            // and set passwordFound boolean to stop the threads
             if (Main.verifyPassword(zip, password)) {
                 Main.setPasswordFound(true);
                 Main.setCorrectPassword(password);

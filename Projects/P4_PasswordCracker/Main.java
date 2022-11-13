@@ -2,12 +2,25 @@
 package P4_PasswordCracker;
 
 import java.io.*;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.nio.file.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.List;
 import net.lingala.zip4j.core.*;
 import net.lingala.zip4j.exception.*;
 import net.lingala.zip4j.model.FileHeader;
+
+/* File // numThreads // Execution Time
+   ------------------------------------
+   protected3.zip // 1 // 4.078s
+   protected3.zip // 3 // 1.716s
+   protected3.zip // 4 // 1.511s
+   protected3.zip // 8 // 1.358s
+   ------------------------------------
+   protected5.zip // 3 // 1087.14s
+   protected5.zip // 4 // 924.083s
+   protected5.zip // 8 // 688.318s
+   ------------------------------------
+*/
 
 public class Main {
 	// AtomicBoolean is a thread-safe boolean
@@ -15,15 +28,11 @@ public class Main {
 	private static String correctPassword;
 
     public static void main(String[] args) throws Exception {
-		String filePath = "Projects/P4_PasswordCracker/zipfiles/test3.zip";
-		int passwordLength = 3;
-		// String filePath = "Projects/P4_PasswordCracker/zipfiles/example.zip";
-		// int passwordLength = 4;
 		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected3.zip";
 		// int passwordLength = 3;
-		// String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
-		// int passwordLength = 5;
-		int numThreads = 8;
+		String filePath = "Projects/P4_PasswordCracker/zipfiles/protected5.zip";
+		int passwordLength = 5;
+		int numThreads = 4;
 		String file = filePath.substring(37);
 		
 		try {
@@ -34,6 +43,7 @@ public class Main {
 			//make an numThreads sized array of tempFileNames
 			String[] tempFileNames = new String[numThreads];
 
+			// Create a copy of the zip file for each thread
 			for (int i = 0; i < numThreads; i++) {
 				tempFileNames[i] = (i + 1) + "-" + file;
 				Files.copy(Path.of(filePath),
@@ -44,6 +54,7 @@ public class Main {
 				testers[i] = new PasswordTester(zip);
 			}
 
+			// Log start time
 			System.out.println("Attempting to crack " + file + " with " + numThreads + " thread(s)...");
 			long start = System.currentTimeMillis();
 
@@ -59,8 +70,9 @@ public class Main {
 			}
 			generator.join();
 
+			// Log end time and print results
 			long end = System.currentTimeMillis();
-			System.out.println("Finished in " + (double)(end - start)/1000 + " s");
+			System.out.println("Finished in " + (double)(end - start)/1000 + "s");
 
 			// Make sure that the password was found and extract the zip
 			if (passwordFound.get()) {
@@ -68,7 +80,7 @@ public class Main {
 				extractZip(new ZipFile("Projects/P4_PasswordCracker/zipfiles/" + file), correctPassword);
 			} else {
 				System.out.println("You suck at cracking passwords");
-			}			
+			}
 			
 			// Delete copied zip files
 			for (String tempFile : tempFileNames) {
@@ -76,13 +88,12 @@ public class Main {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Error: " + e);
+			System.err.println("Error: " + e);
 		}
     }
 
 	public static boolean verifyPassword(ZipFile zipFile, String password) {
 		try {
-
             if (zipFile.isEncrypted()) {
                 zipFile.setPassword(password);
             }
@@ -99,24 +110,11 @@ public class Main {
                     }
                     inputStream.close();
 					return true;
-                } catch (ZipException e) {
-                    if (e.getCode() == ZipExceptionConstants.WRONG_PASSWORD) {
-                        System.out.println("Wrong password");
-						return false;
-                    } else {
-                        //Corrupt file
-                        e.printStackTrace();
-						return false;
-                    }
-                } catch (IOException e) {
-                     System.out.println("Most probably wrong password.");
-                     e.printStackTrace();
-					 return false;
+                } catch (Exception e) {
+					return false;
                 }
             }
         } catch (Exception e) {
-            System.out.println("Some other exception occurred");
-            e.printStackTrace();
 			return false;
         }
 		return false;
