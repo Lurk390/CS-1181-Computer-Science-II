@@ -1,4 +1,4 @@
-package Threads;
+package Threads.ColoredThreads;
 
 class RedThread extends Thread {
 
