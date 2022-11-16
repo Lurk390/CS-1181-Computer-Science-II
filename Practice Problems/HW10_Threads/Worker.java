@@ -15,7 +15,7 @@ class Worker implements Runnable {
         while (!orders.weAreDone()) {
             Task task = orders.acceptTask();
             
-            System.out.println("Worker " + workerId + " accepted " + task);
+            System.out.println("Worker " + workerId + " accepted " + task + " (queue size: " + orders.size() + ")");
             
             try {
                 Thread.sleep(task.getTimeToComplete());
