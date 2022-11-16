@@ -13,14 +13,32 @@ class OrderQueue {
         moreOrdersComing = true;
     }
     
-    public void createTask(String label, int timeToComplete) {
-        orders.offer(new Task(label, timeToComplete));
+    public synchronized void createTask(String label, int timeToComplete) {
+        // Will only add if there are less than 5 tasks in the queue
+        if (orders.size() < 5) {
+            orders.add(new Task(label, timeToComplete));
+        } else {
+            // If there are 5 tasks in the queue, wait until there is room
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        notifyAll();
     }
     
-    public Task acceptTask() {
+    public synchronized Task acceptTask() {
         while (orders.isEmpty()) {
+            try {
+                System.out.println("waiting...");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             // looping until there is a task in the queue to accept
         }
+        notifyAll();
         return orders.poll();
     }
     

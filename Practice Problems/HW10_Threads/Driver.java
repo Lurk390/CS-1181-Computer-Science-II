@@ -16,10 +16,10 @@ public class Driver {
         w3.start();
 
         try {
-            tm.join();
             w1.join();
             w2.join();
             w3.join();
+            tm.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
