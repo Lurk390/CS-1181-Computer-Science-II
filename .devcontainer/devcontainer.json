@@ -1,7 +1,7 @@
 {
-    "name": "Development Environment",
+    "name": "Java Environment",
 	"build": {
-		"dockerfile": "/home/mahmoud/code/dev/docker/java/Dockerfile"
+		"dockerfile": "dev/docker/java/Dockerfile"
 	},
 	"features": {
         "git": "os-provided",
