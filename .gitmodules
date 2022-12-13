@@ -1,0 +1,3 @@
+[submodule ".devcontainer/dev"]
+	path = .devcontainer/dev
+	url = https://github.com/davidcutting/dev.git
